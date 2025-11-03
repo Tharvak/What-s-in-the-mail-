@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Confession</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container confession-page">
+        <div class="bouquet-animation">
+            <div class="flower-elements">
+                <div class="flower flower-1"></div>
+                <div class="flower flower-2"></div>
+                <div class="flower flower-3"></div>
+                <div class="flower flower-4"></div>
+                <div class="flower flower-5"></div>
+            </div>
+
+            <div class="photo-container">
+                <img src="9d6d8512-91f8-496d-a4d8-8fae05ce98f2.jpeg" alt="Photo of her 1" class="flower-photo photo-1">
+                <img src="photo_22_2025-10-14_18-13-37.jpg" alt="Photo of her 2" class="flower-photo photo-2">
+                <img src="photo_24_2025-10-14_18-13-37.jpg" alt="Photo of her 3" class="flower-photo photo-3">
+            </div>
+        </div>
+
+        <h2 class="confession-text">Will you be my partner? ❤️</h2>
+        
+        <div class="button-group">
+            <a href="yes.html" class="answer-button yes-button">Yes!</a>
+            
+            <button id="noButton" class="answer-button no-button">No</button>
+        </div>
+    </div>
+
+<script>
+        const noButton = document.getElementById('noButton');
+
+        noButton.addEventListener('mouseover', () => {
+            // Get the dimensions of the button
+            const buttonRect = noButton.getBoundingClientRect();
+
+            // Calculate the maximum X and Y coordinates the button can move to
+            // We subtract the button's own width/height to keep it fully visible
+            const maxX = window.innerWidth - buttonRect.width - 20; 
+            const maxY = window.innerHeight - buttonRect.height - 20; 
+
+            // Generate a random position within the visible screen area
+            const newX = Math.random() * maxX; 
+            const newY = Math.random() * maxY;
+
+            // Apply the new position using fixed positioning relative to the viewport
+            noButton.style.position = 'fixed'; // Use 'fixed' for moving relative to the screen
+            noButton.style.left = `${newX}px`;
+            noButton.style.top = `${newY}px`;
+        });
+    </script>
+</body>
+</html>

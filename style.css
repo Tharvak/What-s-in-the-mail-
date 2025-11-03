@@ -1,0 +1,383 @@
+/* Basic Reset and Body Styling */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f7e0e7; /* Soft Pink Background */
+    color: #444;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Container for Centering Content */
+.container {
+    text-align: center;
+    padding: 20px;
+    position: relative; /* Needed for absolute positioning of the 'No' button */
+}
+
+/* --- Index Page Styling (Unchanged) --- */
+.index-page h1 {
+    font-size: 2.5em;
+    color: #e91e63;
+    margin-bottom: 5px;
+}
+
+.click-text {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.kitty-image {
+    width: 200px;
+    height: auto;
+    display: block;
+    margin: 0 auto 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.button {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #ff69b4;
+    color: white;
+    text-decoration: none;
+    font-size: 1.5em;
+    border-radius: 50px;
+    transition: background-color 0.3s, transform 0.2s;
+    font-weight: bold;
+    box-shadow: 0 5px 15px rgba(255, 105, 180, 0.5);
+}
+
+.button:hover {
+    background-color: #e91e63;
+    transform: scale(1.05);
+}
+
+/* --- Confession Page Styling (Updated for Buttons and Animated Flowers) --- */
+
+.confession-page {
+    position: relative;
+    overflow: hidden;
+    max-width: 600px;
+    min-height: 450px;
+}
+
+.bouquet-animation {
+    position: relative;
+    width: 300px; /* Overall area for flowers and photos */
+    height: 350px;
+    margin: 0 auto;
+    animation: bouquet-rise 1.5s ease-out forwards;
+    transform: translateY(100vh);
+}
+
+/* --- Animated CSS Flowers --- */
+.flower-elements {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1; /* Below photos, above background */
+}
+
+.flower {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background-color: #ffafc9; /* Light pink for petals */
+    border-radius: 50%;
+    opacity: 0; /* Start hidden */
+    animation: flower-bloom 1s ease-out forwards;
+    transform: scale(0);
+}
+
+/* Create petal shapes using pseudo-elements */
+.flower::before,
+.flower::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #ffafc9;
+    border-radius: 50%;
+}
+
+.flower::before {
+    top: -50%;
+    left: 0;
+}
+
+.flower::after {
+    left: 50%;
+    top: 0;
+}
+
+/* Specific flower positioning and animation delays */
+.flower-1 { top: 50px; left: 20px; animation-delay: 0.5s; background-color: #ff69b4; }
+.flower-2 { top: 30px; right: 20px; animation-delay: 0.7s; background-color: #ff9800; } /* slightly different color */
+.flower-3 { top: 150px; left: 120px; animation-delay: 0.9s; background-color: #ff69b4; }
+.flower-4 { top: 100px; left: 200px; animation-delay: 1.1s; background-color: #ffafc9; }
+.flower-5 { top: 200px; right: 80px; animation-delay: 1.3s; background-color: #e91e63; }
+
+
+/* Photo Container */
+.photo-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2; /* Photos on top of flowers */
+}
+
+.flower-photo {
+    position: absolute;
+    width: 60px; /* Size of the small photos on the flowers */
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    opacity: 0; /* Start invisible */
+    transition: opacity 0.5s ease-in-out;
+    border: 3px solid white;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+    z-index: 3; /* Photos on top */
+}
+
+/* Specific photo positions (adjust these to match your flower positions) */
+.photo-1 {
+    top: 50px; left: 20px; /* Match flower-1 position */
+    animation: photo-fade-in 0.5s forwards 1.8s;
+}
+
+.photo-2 {
+    top: 30px; right: 20px; /* Match flower-2 position */
+    animation: photo-fade-in 0.5s forwards 2.3s;
+}
+
+.photo-3 {
+    top: 150px; left: 120px; /* Match flower-3 position */
+    animation: photo-fade-in 0.5s forwards 2.8s;
+}
+
+
+/* The Confession Text */
+.confession-text {
+    font-size: 2.5em;
+    color: #e91e63;
+    margin-top: 50px;
+    opacity: 0;
+    animation: text-reveal 1s ease-out forwards 3.5s;
+    transform: translateY(20px);
+    z-index: 4; /* Text on top */
+}
+
+/* Button Group */
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 30px;
+    position: relative; /* For 'No' button absolute positioning */
+    z-index: 5; /* Buttons on top */
+}
+
+.answer-button {
+    padding: 12px 25px;
+    font-size: 1.2em;
+    font-weight: bold;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s, box-shadow 0.3s;
+    text-decoration: none;
+    color: white;
+}
+
+.yes-button {
+    background-color: #4CAF50;
+    box-shadow: 0 4px 10px rgba(76, 175, 80, 0.5);
+}
+
+.yes-button:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+.no-button {
+    background-color: #F44336;
+    box-shadow: 0 4px 10px rgba(244, 67, 54, 0.5);
+    transition: all 0.2s ease-out;
+}
+
+/* --- YES Page Styling (UPDATED for better heart layout) --- */
+
+.yes-page {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    min-height: 100vh; /* Ensure it takes full height */
+    display: flex; /* Use flexbox to easily center content */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.final-message {
+    font-size: 2.5em; /* Made bigger */
+    font-weight: bold;
+    color: #e91e63;
+    z-index: 10;
+    position: relative;
+    margin-top: 50px;
+    opacity: 0;
+    animation: fadeIn 1s forwards 2.5s; /* Adjusted delay for new heart anim */
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.2); /* Add subtle shadow */
+}
+
+/* --- Heart Animation (BIGGER, COOLER, BETTER) --- */
+.heart-container {
+    width: 250px; /* Bigger container */
+    height: 250px; /* Bigger container */
+    margin: 50px auto 0; /* Adjust margin as needed */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 9;
+}
+
+.heart {
+    position: relative;
+    width: 150px; /* Main heart size */
+    height: 150px;
+    background-color: #ff69b4; /* Hotter pink */
+    transform: rotate(-45deg);
+    opacity: 0;
+    animation: buildHeart 2s ease-out forwards; /* Longer animation */
+    box-shadow: 0 10px 30px rgba(255, 105, 180, 0.4); /* Deeper shadow */
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Pseudo-elements for the rounded top parts */
+.heart::before,
+.heart::after {
+    content: "";
+    background-color: #ff69b4; /* Match main heart color */
+    border-radius: 50%;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    animation: buildHeart 2s ease-out forwards;
+    box-shadow: 0 10px 30px rgba(255, 105, 180, 0.4); /* Deeper shadow */
+}
+
+.heart::before {
+    top: -50%;
+    left: 0;
+    animation-delay: 0.3s; /* Delay for a "building" effect */
+}
+
+.heart::after {
+    left: 50%;
+    top: 0;
+    animation-delay: 0.6s; /* Further delay */
+}
+
+
+/* Confetti (Pure CSS - Unchanged) */
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #ffeb3b;
+    opacity: 0;
+    animation: confetti-fall 3s linear infinite;
+    z-index: 5;
+}
+
+/* Random initial positioning and colors for confetti (Unchanged) */
+.confetti:nth-child(1) { left: 10%; background: #9c27b0; animation-delay: 0s; }
+.confetti:nth-child(2) { left: 20%; background: #e91e63; animation-delay: 0.5s; }
+.confetti:nth-child(3) { left: 30%; background: #4caf50; animation-delay: 1s; }
+.confetti:nth-child(4) { left: 40%; background: #2196f3; animation-delay: 1.5s; }
+.confetti:nth-child(5) { left: 50%; background: #ff9800; animation-delay: 2s; }
+.confetti:nth-child(6) { left: 60%; background: #9c27b0; animation-delay: 2.5s; }
+.confetti:nth-child(7) { left: 70%; background: #e91e63; animation-delay: 3s; }
+.confetti:nth-child(8) { left: 80%; background: #4caf50; animation-delay: 3.5s; }
+
+/* --- Lyrics Styling (Assuming you added this previously) --- */
+.lyrics-text {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 600px;
+    font-size: 1.4em;
+    font-weight: 600;
+    color: #444;
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    z-index: 100;
+    text-align: center;
+    transition: opacity 0.3s;
+}
+
+
+/* --- Keyframe Animations (UPDATED for Heart) --- */
+
+@keyframes bouquet-rise {
+    to { transform: translateY(0); }
+}
+
+/* New flower bloom animation (Unchanged) */
+@keyframes flower-bloom {
+    0% { transform: scale(0) rotate(0deg); opacity: 0; }
+    80% { opacity: 1; }
+    100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+@keyframes photo-fade-in {
+    to { opacity: 1; transform: scale(1.1); }
+}
+
+@keyframes text-reveal {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* **NEW** and **IMPROVED** Heart Build Animation */
+@keyframes buildHeart {
+    0% { 
+        transform: scale(0) rotate(-45deg); 
+        opacity: 0; 
+        box-shadow: 0 0 0 rgba(0,0,0,0);
+    }
+    50% { 
+        transform: scale(1.1) rotate(-45deg); /* Overshoot slightly for a pop effect */
+        opacity: 1; 
+        box-shadow: 0 15px 40px rgba(255, 105, 180, 0.6);
+    }
+    100% { 
+        transform: scale(1) rotate(-45deg); 
+        opacity: 1; 
+        box-shadow: 0 10px 30px rgba(255, 105, 180, 0.4);
+    }
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+@keyframes confetti-fall {
+    0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(100vh) rotate(360deg); opacity: 1; }
+}
